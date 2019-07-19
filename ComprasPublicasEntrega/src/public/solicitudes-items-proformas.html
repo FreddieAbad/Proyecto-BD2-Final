@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relacionar items de solicitudes con proformas</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/principal.css" >
+    <link rel="stylesheet" type="text/css" href="css/ingresarProformas.css">
+
+
+</head>
+<body>
+<div><img src="img/logo.png" class="logo"></div>
+<div class="aux-bar">
+    <ul>
+        <li><img src="img/campana2.png"></li>
+        <li><a href="#"><i>Cerrar sesión</i></a></li>
+    </ul>
+</div>
+<header>
+    <div class="container">
+        <div class="menu-bar">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="./principal.html">Solicitudes</a></li>
+                <li><a href="./catalogo.html">Catálogo</a></li>
+                <li><a href="#">Inventario</a></li>
+                <li><a href="#">Proveedores</a></li>
+            </ul>
+        </div>
+
+    </div>
+</header>
+
+
+
+
+<div class="container-fluid">
+    <br>
+    <div class="contenedor-as">
+        <span class="float-right"><a href="#"><i>Finalizar</i></a></span>
+        <a href="#"><i>Cancelar</i></a>
+    </div>
+    </div>
+
+    <div class="table-items table-responsive">
+        <table id="myTable">
+            <tr class="header">
+                <th>Id item</th>
+                <th>Descripción</th>
+                <th>Disponible</th>
+                <th>Proveedor</th>
+                <th># Proforma</th>
+                <th>Precio unidad</th>
+                <th>Marca</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Pasta dental</td>
+                <td>
+                    <select>
+                        <option value="1">Sí</option>
+                        <option value="2">No</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="1">Krobalto</option>
+                        <option value="2">Depósito Dental NEO-TEC</option>
+                        <option value="3">Gato</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="1">Proformas segun proveedor</option>
+                    </select>
+                </td>
+                <td><input type="number" min="1" step="any" /></td>
+                <td><input></td>
+
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Bandas</td>
+                <td>
+                    <select>
+                        <option value="1">Sí</option>
+                        <option value="2">No</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="1">Krobalto</option>
+                        <option value="2">Depósito Dental NEO-TEC</option>
+                        <option value="3">Gato</option>
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        <option value="1">Proformas segun proveedor</option>
+                    </select>
+                </td>
+                <td><input type="number" min="1" step="any" /></td>
+                <td><input></td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+
+<script src="js/jquery.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

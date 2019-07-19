@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitar proformas</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/principal.css" >
+    <link rel="stylesheet" type="text/css" href="css/solicitudes-items.css" >
+
+
+
+</head>
+<body>
+<div><img src="img/logo.png" class="logo"></div>
+<div class="aux-bar">
+    <ul>
+        <li><img src="img/campana2.png"></li>
+        <li><a href="#">Cerrar sesión</a></li>
+    </ul>
+</div>
+<header>
+    <div class="container">
+        <div class="menu-bar">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="./principal.html">Solicitudes</a></li>
+                <li><a href="./catalogo.html">Catálogo</a></li>
+                <li><a href="./inventario.html">Inventario</a></li>
+                <li><a href="#">Proveedores</a></li>
+            </ul>
+        </div>
+
+    </div>
+</header>
+
+
+<div class="container-fluid">
+    <br>
+    <div class="row">
+
+
+        <div class="col-xs-12 col-md-5">
+            <h4>Catálogo de proveedores</h4>
+            <table id="table11" border="1">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Estado</th>
+                    <th>Seleccionar</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Krobalto</td>
+                    <td>ventas@krobalto.com</td>
+                    <td>Activo</td>
+                    <td><input type="checkbox" name="check-tab11"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Depósito Dental NEO-TEC</td>
+                    <td>atencion@depositodental.com</td>
+                    <td>Activo</td>
+                    <td><input type="checkbox" name="check-tab11"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Gato</td>
+                    <td>admin@gato.ec</td>
+                    <td>Activo en mora</td>
+                    <td><input type="checkbox" name="check-tab11"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Patito</td>
+                    <td>Ventas@patito.com</td>
+                    <td>Inactivo</td>
+                    <td><input type="checkbox" name="check-tab11"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-xs-12 col-md-1 tab-btn">
+            <h4>Acción</h4>
+            <button onclick="tab11_To_tab22();">>>>>></button>
+            <button onclick="tab22_To_tab11();"><<<<<</button>
+            <button>Solicitar</button>
+            <button>Cancelar</button>
+        </div>
+
+        <div class="col-xs-12 col-md-5">
+            <h4>Proveedores seleccionados</h4>
+            <table id="table22" border="1">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Estado</th>
+                    <th>Seleccionar</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src='js/jquery.js'></script>
+
+<script src="js/solicitarProformas.js"></script>
+
+
+</body>
+</html>

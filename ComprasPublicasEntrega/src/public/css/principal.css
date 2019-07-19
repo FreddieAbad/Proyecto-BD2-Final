@@ -1,0 +1,224 @@
+
+header{
+    background: #171796;
+}
+nav{
+    background: blue;
+}
+.main{
+    background: white;
+}
+aside{
+    background: #171796;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th{
+    background: #D2070F;
+    color: white;
+    padding: 1em 0 .5em 0;
+}
+
+td{
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.cont-tabla{
+    padding: 1em;
+}
+.radio{
+    margin: 10px 10px 0px 0px;
+    padding: 0 !important;
+}
+
+.aux-bar{
+    background: #ffffff;
+    text-align: right;
+}
+.aux-bar ul{
+    display: inline-flex;
+    list-style: none;
+    margin-bottom: 0 !important;
+}
+.aux-bar ul li{
+    padding: 5px 10px 5px 10px;
+}
+
+.menu-bar{
+    background: #171796;
+    text-align: center;
+    padding: .5em;
+}
+.menu-bar ul{
+    display: inline-flex;
+    list-style: none;
+    color: #fff;
+    margin-bottom: 0 !important;
+    padding-inline-start: 0 !important;
+}
+.menu-bar ul li{
+    width: 120px;
+    padding: 8px 15px 8px 15px;
+}
+.menu-bar ul li a{
+    text-decoration: none;
+    color: #ffffff;
+}
+.active, .menu-bar ul li:hover{
+    background: #D2070F;
+    border-radius: 3px;
+}
+.action-container{
+    text-align: center;
+    padding-top: 1em;
+}
+.action-container ul{
+    list-style: none;
+}
+.action-container ul li{
+    width: 120px;
+    padding: 8px 15px 8px 15px;
+}
+
+.action-container ul li a{
+    list-style: none;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.action-container ul li:hover{
+    background: #D2070F;
+    border-radius: 3px;
+}
+
+
+
+
+
+#myInput {
+
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 30%;
+    font-size: 12px;
+    padding: 6px 20px 6px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#myInput2 {
+
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 12px;
+    padding: 6px 20px 6px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#myTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+#myTable th, #myTable td {
+    text-align: left;
+    padding: 12px;
+}
+
+#myTable tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+.contenedor-botones{
+    display: inline-flex;
+}
+
+.contenedor-botones form{
+    padding: 0 0 0 10px;
+}
+
+.contenedor-aux-cat {
+    display: inline-flex;
+    width: 100%;
+    text-align: right;
+    float: left;
+
+}
+.contenedor-aux-cat div {
+    padding-right: 1em;
+    float: left;
+}
+
+
+
+
+.modal-agregar{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+
+.modal-cont-agregar{
+    height: 330px;
+    width: 310px;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.modal-cont-agregar ul{
+    display: inline-block;
+    text-align: center !important;
+    width: 100%;
+
+}
+
+.modal-cont-agregar li{
+    text-align: center;
+    display: block;
+    padding: 0 2em 0 0;
+}
+
+.cerrar{
+    position: absolute;
+    top: 0;
+    right: 14px;
+    font-size: 2.5em;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+
+/* 
+table thead tbody{
+    display:table;
+    width: 100%;
+    background-color: lightblue;
+  } */
+  

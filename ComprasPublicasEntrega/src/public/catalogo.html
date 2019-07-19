@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Items</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/principal.css">
+</head>
+
+<body>
+    <div><img src="img/logo.png" class="logo"></div>
+    <div class="aux-bar">
+        <ul>
+            <li><img src="img/campana2.png"></li>
+            <li><a href="#"> Cerrar sesión</a></li>
+        </ul>
+    </div>
+    <header>
+        <div class="container">
+            <div class="menu-bar">
+                <ul>
+                    <li><a href="./inicio.html">Inicio</a></li>
+                    <li><a href="./principal.html">Solicitudes</a></li>
+                    <li class="active"><a href="#">Catálogo</a></li>
+                    <li><a href="./inventario.html">Inventario</a></li>
+                    <li><a href="./proveedor.html">Proveedores</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <br>
+        <div class="contenedor-aux-cat">
+            <div class="form-group">
+                <input type="text" class="form-control" id="myInput2" onkeyup="filtrarResultado()" placeholder="Buscar por descripción..."
+                    title="Ingresa descripcion a filtrar">
+            </div>
+            <div class="form-group"> 
+                <button class="boton btn btn-success" id="btn_agregar">Agregar</button>
+                <script>
+                    document.getElementById('btn_agregar').addEventListener("click", function () {
+                        document.querySelector('.modal-agregar').style.display = "flex";
+                    });
+                </script>
+            </div>
+        </div>
+        <div id="infoItem">
+            
+        </div>
+        <div id="divTablaCatalogo">
+            <table class="table" id="tablaCatalogo">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripción</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoCatalogo">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--     MEJORAR INTERFAZ AGREGAR ITEM
+ -->
+    <div id="agregarItem" class="modal-agregar">
+        <div class="modal-cont-agregar">
+            <div class="cerrar">+</div>
+            <script>
+                document.querySelector('.cerrar').addEventListener("click", function () {
+                    document.querySelector('.modal-agregar').style.display = "none";
+                });
+            </script>
+            <form action="" method="post" name="Agenda1">
+                <br><br>
+                <h6>
+                    Nuevo Item
+                </h6></br>
+                <div>
+                    <input id="iptNuevoItem" class="form-control" name="desc-item-nuevo" type="text" placeholder="Descripción">
+                </div></br>
+                <button class="delete-button btn btn-primary text-light btn-sm" id="btnAgregarItem"> Agregar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function filtrarResultado() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput2");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tablaCatalogo");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+
+
+
+    <script src="js/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="js/catalogo.js"></script>
+
+</body>
+
+</html>

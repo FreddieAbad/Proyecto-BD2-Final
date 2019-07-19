@@ -1,0 +1,6 @@
+.container{overflow: hidden}
+.tab{float: left}
+.tab-btn{margin: 50px;}
+button{display:block;margin-bottom: 20px;}
+tr{transition:all .25s ease-in-out}
+tr:hover{background-color: #ddd;}
