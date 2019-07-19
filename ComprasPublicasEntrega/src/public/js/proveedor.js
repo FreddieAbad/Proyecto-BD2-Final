@@ -2,7 +2,7 @@ $(window).on('load', function () {
     $.ajax({
         url: '/llenarProveedorInicio',
         success: function (proveedores) {
-            let tbody = $('#cuerpoCatalogo')
+            let tbody = $('#cuerpoProveedores')
             tbody.html('');
             proveedores.forEach(proveedor => {
                 tbody.append(`
@@ -27,6 +27,9 @@ $(window).on('load', function () {
         }
     })
 });
+
+
+
 //REFRESCAR LOAD PAGINA 
 /*
 $.ajax({
@@ -94,9 +97,9 @@ $(function () {
     //Eliminar Item
     $('#divtablaProveedores').on('click', '#btnEliminarProveedor', function () {
         let row = $(this).closest('tr')
-        let id = row.find('#itemId').text();
-        let id = row.find('#provNombre').text();
-        if (confirm("El proveedor " + id + " se inactivará. \n  ¿Confimar?")) {
+        let id = row.find('#provId').text();
+        let nombre = row.find('#provNombre').text();
+        if (confirm("El proveedor " + nombre + " se inactivará. \n  ¿Confimar?")) {
             $.ajax({
                 url: '/eliminarProveedor/' + id,
                 method: 'delete',
@@ -109,11 +112,11 @@ $(function () {
                             <div class="card-header">Proveedor Inactivo</div>
                         </div>
                     `)
-                    //refresco tabla catalogo
+                    //refresco tabla proveedor
                     $.ajax({
                         url: '/llenarProveedorInicio',
                         success: function (proveedores) {
-                            let tbody = $('#cuerpoCatalogo')
+                            let tbody = $('#cuerpoProveedores')
                             tbody.html('');
                             proveedores.forEach(proveedor => {
                                 tbody.append(`

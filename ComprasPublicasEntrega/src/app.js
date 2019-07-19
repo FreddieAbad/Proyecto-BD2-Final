@@ -231,8 +231,8 @@ app.get('/llenarProveedorInicio', (req, res, next) => {
                 console.log(err);
                 res.status(400).send(err);
             } else {
-                var inventarioInfo = result.rows;
-                res.json(inventarioInfo)
+                var proveedorInfo = result.rows;
+                res.json(proveedorInfo)
             }
         })
     })
