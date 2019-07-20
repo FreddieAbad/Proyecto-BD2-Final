@@ -13,3 +13,10 @@ prov.latitud latitud
 from proveedores prov,estadoproveedor estprov
 where prov.idestadoproveedor=estprov.idestado
 order by prov.idproveedor
+
+--- ACTUALIZAR ESTADO DE SOLICITUD A INACTIVO
+update solicitudesadquisicionitems SET idestadosolicitud = 9 WHERE idsolicitud=1
+
+--- Ingresar prvoeedor
+
+insert into proveedores (ruc,nombre,ciudad,direccion,email,paginaweb,longitud,latitud) VALUES ('', '', '', '','','',1.3 ,1.2)

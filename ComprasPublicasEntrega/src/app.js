@@ -180,7 +180,7 @@ app.delete('/eliminarItem/:itemId', (req, res) => {
     })
 })
 
-//Eliminar logicamente un item
+//Actualizar item (Revisar la siguiente tb)
 app.post('/actualizarItem/:itemId', (req, res) => {
     const {
         itemId
@@ -208,7 +208,34 @@ app.post('/actualizarItem/:itemId', (req, res) => {
         })
     })
 })
-
+//Actualizar item (Revisar la anterior tb)
+app.post('/actualizarItemDesc', (req, res) => {
+    const {
+        id
+    } = req.body
+    const {
+        descripcionNueva
+    } = req.body
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'UPDATE items SET descripcion = \''+descripcionNueva+'\' WHERE iditem=' + id + ';';
+        console.log(sentencia);
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                res.json('Item Actualizado')
+            }
+        })
+    })
+})
 //RUTA LLENAR TABLA PROVEEDORES
 app.get('/llenarProveedorInicio', (req, res, next) => {
     var pool = new pg.Pool({
@@ -264,8 +291,226 @@ app.delete('/eliminarProveedor/:provId', (req, res) => {
     })
 })
 
+//Eliminar solicitud
+app.delete('/eliminarSolicitud/:soliId', (req, res) => {
+    const {
+        soliId
+    } = req.params
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'update solicitudesadquisicionitems SET idestadosolicitud = 9 WHERE idsolicitud=' + soliId + ';';
+        console.log(sentencia);
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                res.json('Proovedor Inactivo')
+            }
+        })
+    })
+});
+//RUTA Actualizar Solicitud
+app.get('/getInfoSolicitud/:soliId', (req, res, next) => {
+    const {
+        soliId
+    } = req.params
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'SELECT soli.idsolicitud,date(soli.fechainicio) fechainicio,date(soli.fechafin) fechafin,per.nombres,per.apellidos, ' +
+            ' soli.preciosubtotal,soli.preciototal,soli.descuento, est.descripcion ' +
+            ' from solicitudesadquisicionitems soli, personal per, estadosolicitud est ' +
+            ' where soli.idpersonal=per.idpersonal and soli.idestadosolicitud=est.idestado and soli.idsolicitud = '+soliId+' ORDER BY soli.idsolicitud';
+        console.log('Listado Solicitud: ' + sentencia)
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                var solicitudInfo = result.rows;
+                res.json(solicitudInfo)
+            }
+        })
+    })
+});
+
+//Accion Boton actualizar, recibe nuevo descento y actualiza el registro de solicitud
+app.post('/actualizarDescuento', (req, res) => {
+    const {
+        id
+    } = req.body
+    const {
+        descuentoNuevo
+    } = req.body
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'UPDATE solicitudesadquisicionitems SET descuento = '+descuentoNuevo+' WHERE idsolicitud=' + id + ';';
+        console.log(sentencia);
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                res.json('Item Actualizado')
+            }
+        })
+    })
+})
+
+//Conseguir la informacion de un proveedor
+app.get('/getInfoProveedor/:proveedorId', (req, res, next) => {
+    const {
+        proveedorId
+    } = req.params
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'Select prov.idproveedor,prov.nombre,prov.ruc,prov.ciudad,prov.direccion,'+
+        ' prov.email,prov.paginaweb, estprov.estado estado, prov.longitud longitud, prov.latitud latitud '+
+        ' from proveedores prov,estadoproveedor estprov where prov.idestadoproveedor=estprov.idestado and '+
+        ' prov.idproveedor='+proveedorId;
+        console.log('Listado Solicitud: ' + sentencia)
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                var proveedorInfo = result.rows;
+                res.json(proveedorInfo)
+            }
+        })
+    })
+});
+
+//Actualziar un Proveedor
+app.post('/actualizarProv/:id', (req, res) => {
+    const {
+        id
+    } = req.params
+    const {
+        nombre
+    } = req.body
+    const {
+        ciudad
+    } = req.body
+    const {
+        direccion
+    } = req.body
+    const {
+        ruc
+    } = req.body
+    const {
+        email
+    } = req.body
+    const {
+        paginaweb
+    } = req.body
+    const {
+        latitud
+    } = req.body
+    const {
+        longitud
+    } = req.body
+  
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'update proveedores set ruc=\''+ruc+'\', nombre=\''+nombre+'\', ciudad=\''+ciudad+'\',direccion =\''+direccion+'\', email=\''
+        +email+'\',paginaweb=\''+paginaweb+'\',longitud='+longitud+' ,latitud='+latitud+' where idproveedor='+id;
+
+        console.log(sentencia);
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                res.json('Item Actualizado')
+            }
+        })
+    })
+})
+
+//Insertar un nuevo Proveedor
+app.post('/agregarProv', (req, res) => {
+    
+    const {
+        nombre
+    } = req.body
+    const {
+        ciudad
+    } = req.body
+    const {
+        direccion
+    } = req.body
+    const {
+        ruc
+    } = req.body
+    const {
+        email
+    } = req.body
+    const {
+        paginaweb
+    } = req.body
+    const {
+        latitud
+    } = req.body
+    const {
+        longitud
+    } = req.body
+  
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'insert into proveedores (ruc,nombre,ciudad,direccion,email,paginaweb,longitud,latitud,idestadoproveedor)'+
+        ' VALUES (\''+ruc+'\', \''+nombre+'\', \''+ciudad+'\', \''+direccion+'\',\''+email+'\',\''+paginaweb+'\','+longitud+' ,'+latitud+',1) ';
+        console.log(sentencia);
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                res.json('Item Actualizado')
+            }
+        })
+    })
+})
+
 
 app.use(express.static(path.join(__dirname, '/public')))    //funciona incluso cambiando path
 app.listen(app.get('port'), () => {
     console.log(`server on puerto ${app.get('port')}`);
 })
+

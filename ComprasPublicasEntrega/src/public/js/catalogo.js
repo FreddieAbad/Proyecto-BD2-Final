@@ -94,7 +94,6 @@ $(function () {
                             )
                         }
                     })
-
                 }
             })
         }
@@ -107,7 +106,39 @@ $(function () {
         let id = row.find('#itemId').text();
         let descItem = row.find('#itemDescripcion').text();
         item = ""
-        var ventana = prompt("Ingresa la nueva descripcion del Item ", descItem);
+       // var ventana = prompt("Ingresa la nueva descripcion del Item ", descItem);
+        
+        //
+        let itemInfo = $('#infoItem')
+        itemInfo.html('');
+        itemInfo.append(`
+            <div class="card mt-3 mb-3" >
+                <div class="card-header" >
+                    <form class="form-inline">
+                        <h4>Actualizar Item</h4>
+                        <h5>Identificador de  Item:  #</h5>
+                        <h5 id="idItemActualizar"> ${id}</h5>
+                    </form>
+                </div>
+                <div class="card-body">
+                    <div class="row" id="infoItemAct">
+                        <div class="col-9">
+                            <h5>Descripcion </h5>
+                            <input class="form-control form-control-sm" type="text" value="${descItem}" id="descripcionActualizar">
+                        </div>
+                        <div class="col-3">
+                            <form class="form-inline">
+                                <button class="btn btn-success btn-sm" id="btnSucActualizarItem"> Actualizar </button>
+                                <button class="btn btn-danger btn-sm" id="btnCancelActualizarItem"> Cancelar </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `)
+
+        //
+/*
         if (ventana != null || ventana != "") {
             $.ajax({
                 url: '/actualizarItem/' + id,
@@ -115,7 +146,6 @@ $(function () {
                 data:{
                     descripcion:ventana
                 },
-                
                 success: function (response) {
                     console.log(response)
                     let itemInfo = $('#infoItem')
@@ -149,7 +179,33 @@ $(function () {
 
                 }
             })
-        }
+        }*/
 
-    })
+    });
+    //Boton Actualizar Descuento
+    $('#infoItem').on('click', '#btnSucActualizarItem', function () {
+        var id = $("#idItemActualizar").text();
+        var descAct = $('#descripcionActualizar').val();
+        $.ajax({
+            url: '/actualizarItemDesc',
+            method: 'post',
+            data: {
+                id: id,
+                descripcionNueva: descAct
+            },
+            success: function (response) {
+                console.log(response.estado)
+                if (response.estado != 0) {
+                    alert('Item Actualizado');
+                    var pageName = "principal.html";
+                    document.location.href = pageName;
+                } else {
+                    alert('Ha surgido un error, por favor vuelve a intentar.');
+                }
+            },
+            error: function () {
+                alert('Ha surgido un error, por favor vuelve a intentar.')
+            }
+        });
+    });
 });

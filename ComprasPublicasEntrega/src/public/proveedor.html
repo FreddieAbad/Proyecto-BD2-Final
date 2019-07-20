@@ -32,21 +32,23 @@
             </div>
         </div>
     </header>
-
     <div class="container">
         <br>
-        <div class="contenedor-aux-cat">
-            <div class="form-group">
-                <input type="text" class="form-control" id="myInput2" onkeyup="filtrarResultado()"
-                    placeholder="Buscar por descripción..." title="Ingresa descripcion a filtrar">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Filtro de Busqueda:</h5>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" id="myInput2" onkeyup="filtrarResultado()"
+                            placeholder="Buscar por descripción..." title="Ingresa descripcion a filtrar">
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <button class="boton btn btn-success" id="btn_agregar">Agregar</button>
-                <script>
-                    document.getElementById('btn_agregar').addEventListener("click", function () {
-                        document.querySelector('.modal-agregar').style.display = "flex";
-                    });
-                </script>
+            <div class="col-2 ml-5" id="divAgregarProv">
+                <button class="boton btn btn-success" id="btnAgregarProveedor">Agregar Proveedor</button>
             </div>
         </div>
         <div id="infoProveedor"></div>
@@ -65,11 +67,6 @@
                         <th>Estado</th>
                         <th>Accion</th>
                     </tr>
-                    
-
-
-
-
                 </thead>
                 <tbody id="cuerpoProveedores">
                 </tbody>
@@ -77,29 +74,8 @@
         </div>
     </div>
 
-    <!--     MEJORAR INTERFAZ AGREGAR ITEM
- -->
-    <div id="agregarItem" class="modal-agregar">
-        <div class="modal-cont-agregar">
-            <div class="cerrar">+</div>
-            <script>
-                document.querySelector('.cerrar').addEventListener("click", function () {
-                    document.querySelector('.modal-agregar').style.display = "none";
-                });
-            </script>
-            <form action="" method="post" name="Agenda1">
-                <br><br>
-                <h6>
-                    Nuevo Item
-                </h6></br>
-                <div>
-                    <input id="iptNuevoItem" name="desc-item-nuevo" type="text" placeholder="Descripción">
-                </div></br>
-                <button class="delete-button btn btn-success text-light btn-sm" id="btnAgregarItem"> Agregar</button>
-            </form>
-        </div>
-    </div>
-
+    <!-- 
+    SCRIPTS -->
     <script>
         function filtrarResultado() {
             var input, filter, table, tr, td, i, txtValue;
@@ -120,10 +96,6 @@
             }
         }
     </script>
-
-
-
-
     <script src="js/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"

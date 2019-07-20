@@ -1,0 +1,59 @@
+SELECT email, contrasenia from personal where email='freddy.abad@ucuenca.edu.ec' and contrasenia='12345'
+
+
+soli.idsolicitud,soli.fechainicio,soli.fechafin,per.nombres,per.apellidos,soli.preciosubtotal,soli.preciototal,soli.descuento, est.descripcion
+
+SELECT soli.idsolicitud,date(soli.fechainicio),date(soli.fechafin),per.nombres,per.apellidos,soli.preciosubtotal,soli.preciototal,soli.descuento, est.descripcion 
+from solicitudesadquisicionitems soli, personal per, estadosolicitud est 
+where soli.idpersonal=per.idpersonal and soli.idestadosolicitud=est.idestado  
+
+
+SELECT soli.idsolicitud,soli.fechainicio,date(soli.fechafin),per.nombres,per.apellidos,  soli.preciosubtotal,soli.preciototal,soli.descuento, est.descripcion  from solicitudesadquisicionitems soli, personal per, estadosolicitud est  where soli.idpersonal=per.idpersonal and soli.idestadosolicitud=est.idestado
+
+commit
+rollback
+insert into items (descripcion) values('Fluor nuevo 2019')
+
+delete from solicitudes_items
+where iditem = 4;
+delete from items where iditem=4;
+
+select * FROM items 
+WHERE iditem = 4;
+
+
+
+ALTER TABLE items 
+ADD COLUMN estado character varying(25);
+ALTER TABLE items (estado) values ('ACTIVO') WHERE IDITEM<63
+ALTER TABLE items ALTER COLUMN estado
+SET DEFAULT 'ACTIVO';
+
+UPDATE items
+SET estado = 'ACTIVO'
+SELECT * FROM ITEMS WHERE estado='ACTIVO'order by iditem
+UPDATE items SET estado = 'ACTIVO' WHERE iditem=2
+SELECT inventario.iditem, inventario.cantidad,item.descripcion FROM solicitudes_items inventario,items item where inventario.iditem =item.iditem and item.estado='ACTIVO'order by iditem
+
+select * from items
+SELECT inventario.iditem, inventario.cantidad,item.descripcion FROM solicitudes_items inventario,items item where inventario.iditem =item.iditem
+delete from items where id=6;
+SELECT s.iditem, s.cantidad,i.descripcion FROM solicitudes_items s,items i where s.iditem =i.iditem
+
+
+select prov.idproveedor,prov.nombre,prov.ruc,prov.ciudad,prov.direccion,
+prov.email,prov.paginaweb, estprov.estado estado, prov.longitud longitud,
+prov.latitud latitud
+from proveedores prov,estadoproveedor estprov
+where prov.idestadoproveedor=estprov.idestado
+order by prov.idproveedor
+
+select * from proveedores
+UPDATE proveedores SET idestadoproveedor = 3 WHERE idproveedor=1   idproveedor;
+
+
+
+Select prov.idproveedor,prov.nombre,prov.ruc,prov.ciudad,prov.direccion,  prov.email,prov.paginaweb, estprov.estado estado, prov.longitud longitud, prov.latitud latitud from proveedores prov,estadoproveedor estprov where prov.idestadoproveedor=estprov.idestado order
+by prov.idproveedor
+
+SELECT soli.idsolicitud,date(soli.fechainicio) fechainicio,date(soli.fechafin) fechafin,per.nombres,per.apellidos,  soli.preciosubtotal,soli.preciototal,soli.descuento, est.descripcion  from solicitudesadquisicionitems soli, personal per, estadosolicitud est  where soli.idpersonal=per.idpersonal and soli.idestadosolicitud=est.idestado ORDER BY soli.idsolicitud

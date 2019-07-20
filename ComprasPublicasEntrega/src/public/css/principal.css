@@ -116,11 +116,10 @@ tr:nth-child(even) {
 }
 
 #myInput2 {
-
     background-position: 10px 10px;
     background-repeat: no-repeat;
     width: 100%;
-    font-size: 12px;
+    font-size: 90%;
     padding: 6px 20px 6px 40px;
     border: 1px solid #ddd;
     margin-bottom: 12px;
@@ -221,4 +220,8 @@ table thead tbody{
     width: 100%;
     background-color: lightblue;
   } */
+
+#divtablaProveedores{
+    font-size: 90%;
+}
   
