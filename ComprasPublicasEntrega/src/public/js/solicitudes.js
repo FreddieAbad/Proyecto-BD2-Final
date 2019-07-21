@@ -1,3 +1,6 @@
+/**
+ * CARGA DE DATOS DE SOLICITUDES AL REFRESCAR-ABRIR PAGINA
+ */
 $(window).on('load', function () {
     $.ajax({
         url: '/llenarSolicitudesInicio',
@@ -31,9 +34,10 @@ $(window).on('load', function () {
     })
 });
 
-
+/**
+ * CRUD ITEMS
+ */
 $(function () {
-
     //Eliminar Item
     $('#divTablaSolicitudes').on('click', '#btnEliminarSoli', function () {
         let row = $(this).closest('tr')
@@ -86,8 +90,6 @@ $(function () {
             })
         }
     })
-
-
     //Actualizar Item
     $('#divTablaSolicitudes').on('click', '#btnActualizarSoli', function () {
         let row = $(this).closest('tr')
@@ -148,7 +150,6 @@ $(function () {
             }
         })
     })
-
     //Boton Actualizar Descuento
     $('#infoSoli').on('click', '#btnSucActualizarSoli', function () {
         var id = $("#idSoliActualizar").text();
@@ -175,14 +176,14 @@ $(function () {
             }
         });
     });
-
 });
 
-
+/**
+ * Abre Pagina - Solicitar Items
+ */
 $(function () {
-    //Crear Solicitud Item
     $('#divAccionesSolicitud').on('click', '#btnCrearSolicitud', function () {
-        var pageName = "solicitarProformas.html";
+        var pageName = "solicitudesItems.html";
         document.location.href = pageName;
     })
 })

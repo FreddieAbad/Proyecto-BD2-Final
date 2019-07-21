@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path')
 const app = express();
+//Emial
+var nodemailer = require('nodemailer');
 
 //BASE DE DATOS
 const router = express.Router();
@@ -195,7 +197,7 @@ app.post('/actualizarItem/:itemId', (req, res) => {
         if (err) {
             console.log("Can not connect to the DB" + err);
         }
-        var sentencia = 'UPDATE items SET descripcion = \''+descripcion+'\' WHERE iditem=' + itemId + ';';
+        var sentencia = 'UPDATE items SET descripcion = \'' + descripcion + '\' WHERE iditem=' + itemId + ';';
         console.log(sentencia);
         client.query(sentencia, function (err, result) {
             done();
@@ -223,7 +225,7 @@ app.post('/actualizarItemDesc', (req, res) => {
         if (err) {
             console.log("Can not connect to the DB" + err);
         }
-        var sentencia = 'UPDATE items SET descripcion = \''+descripcionNueva+'\' WHERE iditem=' + id + ';';
+        var sentencia = 'UPDATE items SET descripcion = \'' + descripcionNueva + '\' WHERE iditem=' + id + ';';
         console.log(sentencia);
         client.query(sentencia, function (err, result) {
             done();
@@ -245,12 +247,12 @@ app.get('/llenarProveedorInicio', (req, res, next) => {
         if (err) {
             console.log("Can not connect to the DB" + err);
         }
-        var sentencia = ' Select prov.idproveedor,prov.nombre,prov.ruc,prov.ciudad,prov.direccion, '+
-        ' prov.email,prov.paginaweb, estprov.estado estado, prov.longitud longitud,' +
-        ' prov.latitud latitud' +
-        ' from proveedores prov,estadoproveedor estprov' +
-        ' where prov.idestadoproveedor=estprov.idestado' +
-        ' order by prov.idproveedor';
+        var sentencia = ' Select prov.idproveedor,prov.nombre,prov.ruc,prov.ciudad,prov.direccion, ' +
+            ' prov.email,prov.paginaweb, estprov.estado estado, prov.longitud longitud,' +
+            ' prov.latitud latitud' +
+            ' from proveedores prov,estadoproveedor estprov' +
+            ' where prov.idestadoproveedor=estprov.idestado' +
+            ' order by prov.idproveedor';
         console.log('Listado Inventario: ' + sentencia)
         client.query(sentencia, function (err, result) {
             done();
@@ -331,7 +333,7 @@ app.get('/getInfoSolicitud/:soliId', (req, res, next) => {
         var sentencia = 'SELECT soli.idsolicitud,date(soli.fechainicio) fechainicio,date(soli.fechafin) fechafin,per.nombres,per.apellidos, ' +
             ' soli.preciosubtotal,soli.preciototal,soli.descuento, est.descripcion ' +
             ' from solicitudesadquisicionitems soli, personal per, estadosolicitud est ' +
-            ' where soli.idpersonal=per.idpersonal and soli.idestadosolicitud=est.idestado and soli.idsolicitud = '+soliId+' ORDER BY soli.idsolicitud';
+            ' where soli.idpersonal=per.idpersonal and soli.idestadosolicitud=est.idestado and soli.idsolicitud = ' + soliId + ' ORDER BY soli.idsolicitud';
         console.log('Listado Solicitud: ' + sentencia)
         client.query(sentencia, function (err, result) {
             done();
@@ -361,7 +363,7 @@ app.post('/actualizarDescuento', (req, res) => {
         if (err) {
             console.log("Can not connect to the DB" + err);
         }
-        var sentencia = 'UPDATE solicitudesadquisicionitems SET descuento = '+descuentoNuevo+' WHERE idsolicitud=' + id + ';';
+        var sentencia = 'UPDATE solicitudesadquisicionitems SET descuento = ' + descuentoNuevo + ' WHERE idsolicitud=' + id + ';';
         console.log(sentencia);
         client.query(sentencia, function (err, result) {
             done();
@@ -387,10 +389,10 @@ app.get('/getInfoProveedor/:proveedorId', (req, res, next) => {
         if (err) {
             console.log("Can not connect to the DB" + err);
         }
-        var sentencia = 'Select prov.idproveedor,prov.nombre,prov.ruc,prov.ciudad,prov.direccion,'+
-        ' prov.email,prov.paginaweb, estprov.estado estado, prov.longitud longitud, prov.latitud latitud '+
-        ' from proveedores prov,estadoproveedor estprov where prov.idestadoproveedor=estprov.idestado and '+
-        ' prov.idproveedor='+proveedorId;
+        var sentencia = 'Select prov.idproveedor,prov.nombre,prov.ruc,prov.ciudad,prov.direccion,' +
+            ' prov.email,prov.paginaweb, estprov.estado estado, prov.longitud longitud, prov.latitud latitud ' +
+            ' from proveedores prov,estadoproveedor estprov where prov.idestadoproveedor=estprov.idestado and ' +
+            ' prov.idproveedor=' + proveedorId;
         console.log('Listado Solicitud: ' + sentencia)
         client.query(sentencia, function (err, result) {
             done();
@@ -434,7 +436,7 @@ app.post('/actualizarProv/:id', (req, res) => {
     const {
         longitud
     } = req.body
-  
+
     var pool = new pg.Pool({
         connectionString: connectionString,
     })
@@ -442,8 +444,8 @@ app.post('/actualizarProv/:id', (req, res) => {
         if (err) {
             console.log("Can not connect to the DB" + err);
         }
-        var sentencia = 'update proveedores set ruc=\''+ruc+'\', nombre=\''+nombre+'\', ciudad=\''+ciudad+'\',direccion =\''+direccion+'\', email=\''
-        +email+'\',paginaweb=\''+paginaweb+'\',longitud='+longitud+' ,latitud='+latitud+' where idproveedor='+id;
+        var sentencia = 'update proveedores set ruc=\'' + ruc + '\', nombre=\'' + nombre + '\', ciudad=\'' + ciudad + '\',direccion =\'' + direccion + '\', email=\''
+            + email + '\',paginaweb=\'' + paginaweb + '\',longitud=' + longitud + ' ,latitud=' + latitud + ' where idproveedor=' + id;
 
         console.log(sentencia);
         client.query(sentencia, function (err, result) {
@@ -460,7 +462,7 @@ app.post('/actualizarProv/:id', (req, res) => {
 
 //Insertar un nuevo Proveedor
 app.post('/agregarProv', (req, res) => {
-    
+
     const {
         nombre
     } = req.body
@@ -485,7 +487,7 @@ app.post('/agregarProv', (req, res) => {
     const {
         longitud
     } = req.body
-  
+
     var pool = new pg.Pool({
         connectionString: connectionString,
     })
@@ -493,8 +495,8 @@ app.post('/agregarProv', (req, res) => {
         if (err) {
             console.log("Can not connect to the DB" + err);
         }
-        var sentencia = 'insert into proveedores (ruc,nombre,ciudad,direccion,email,paginaweb,longitud,latitud,idestadoproveedor)'+
-        ' VALUES (\''+ruc+'\', \''+nombre+'\', \''+ciudad+'\', \''+direccion+'\',\''+email+'\',\''+paginaweb+'\','+longitud+' ,'+latitud+',1) ';
+        var sentencia = 'insert into proveedores (ruc,nombre,ciudad,direccion,email,paginaweb,longitud,latitud,idestadoproveedor)' +
+            ' VALUES (\'' + ruc + '\', \'' + nombre + '\', \'' + ciudad + '\', \'' + direccion + '\',\'' + email + '\',\'' + paginaweb + '\',' + longitud + ' ,' + latitud + ',1) ';
         console.log(sentencia);
         client.query(sentencia, function (err, result) {
             done();
@@ -508,6 +510,142 @@ app.post('/agregarProv', (req, res) => {
     })
 })
 
+
+//Enviar Email
+app.post('/enviarCorreo', (req, res) => {
+    const {
+        emails
+    } = req.body
+    const {
+        texto
+    } = req.body
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'freddy.abadl@ucuenca.edu.ec',
+            pass: 'pi3.141591294'
+        }
+    });
+    var mailOptions = {
+        from: 'freddy.abadl@ucuenca.edu.ec',
+        to: emails,
+        subject: 'Peticion de Proformas - Consultorio Odontologico Universidad de Cuenca',
+        text: 'Informacion Importante'
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email Enviado: ' + info.response);
+        }
+    });
+})
+
+/* function prettyProductos(productos) {
+
+} */
+/**
+ * Consigo los emails de los proveedores
+ */
+app.get('/getEmailProveedores/:idProveedors', (req, res, next) => {
+    const {
+        idProveedors
+    } = req.params
+    var auxidProveedor = idProveedors.substring(1, idProveedors.length - 1);
+    var arridProveedor = auxidProveedor.split(',')
+    var queryIds = ""
+    var contador = 0
+    var asize = idProveedors.length
+    arridProveedor.forEach((idProveedor) => {
+        if (contador == asize) {
+            var aux = " idproveedor=" + idProveedor;
+            queryIds = queryIds.concat(aux)
+        } else {
+            var aux = " idproveedor=" + idProveedor + " or";
+            queryIds = queryIds.concat(aux)
+        }
+        contador = contador + 1
+    });
+    var queryIds2 = queryIds.substring(1, queryIds.length - 2);
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'Select idproveedor,nombre,email from proveedores where ' + queryIds2;
+        console.log('Listado Solicitud: ' + sentencia)
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                var proveedorInfo = result.rows;
+                res.json(proveedorInfo)
+            }
+        })
+    })
+});
+
+
+
+app.get('/getEmailTexto/:pageURL', (req, res, next) => {
+    const {
+        pageURL
+    } = req.params
+    var nuevoJson = JSON.parse(pageURL)
+    //Ordeno JSON 
+    nuevoJson.sort(ordenarJsonXProp("idItem"));
+    //CONCATENO PARA QUERY
+    var queryIds = ""
+    var contador = 0
+    var asize = pageURL.length
+    nuevoJson.forEach((itms) => {
+        console.log(itms.idItem + '>' + itms.cantidadItem)
+        if (contador == asize) {
+            var aux = " iditem=" + itms.idItem;
+            queryIds = queryIds.concat(aux)
+        } else {
+            var aux = " iditem=" + itms.idItem + " or";
+            queryIds = queryIds.concat(aux)
+        }
+        contador = contador + 1
+    })
+    var queryIds2 = queryIds.substring(1, queryIds.length - 2);
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = 'select descripcion from items where ' + queryIds2 + ' order by iditem'
+        console.log('Listado ITEMS: ' + sentencia)
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                var descripcionItem = result.rows;
+                res.json(descripcionItem)
+            }
+        })
+    })
+});
+
+function ordenarJsonXProp(property) {
+    return function (a, b) {
+        if (a[property] > b[property])
+            return 1;
+        else if (a[property] < b[property])
+            return -1;
+
+        return 0;
+    }
+}
 
 app.use(express.static(path.join(__dirname, '/public')))    //funciona incluso cambiando path
 app.listen(app.get('port'), () => {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Items</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/principal.css">
+</head>
+
+<body>
+    <div><img src="img/logo.png" class="logo"></div>
+    <div class="aux-bar">
+        <ul>
+            <li><img src="img/campana2.png"></li>
+            <li><a href="#"> Cerrar sesión</a></li>
+        </ul>
+    </div>
+    <header>
+        <div class="container">
+            <div class="menu-bar">
+                <ul>
+                    <li ><a href="./inicio.html">Inicio</a></li>
+                    <li><a href="./principal.html">Solicitudes</a></li>
+                    <li><a href="./catalogo.html">Catálogo</a></li>
+                    <li><a href="./inventario.html">Inventario</a></li>
+                    <li><a href="./proveedor.html">Proveedores</a></li>
+                    <li class="active"><a href="./proformaEnviada.html">Envio Proforma</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div id="divProveedores">
+            <h4>Proforma Enviada</h4>
+            <div id="listaProv">
+
+            </div>
+        </div>
+        <div id="divTablaItemEnviado">
+            <table class="table " id="tablaItemEnviado">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoItemEnviado">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- 
+AGREGAR CONTENIDO DE DOC
+    -->
+    <script src="js/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="js/catalogo.js"></script>
+
+</body>
+
+</html>
