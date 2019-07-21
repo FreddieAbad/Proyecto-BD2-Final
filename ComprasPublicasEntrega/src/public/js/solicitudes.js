@@ -182,6 +182,7 @@ $(function () {
 $(function () {
     //Crear Solicitud Item
     $('#divAccionesSolicitud').on('click', '#btnCrearSolicitud', function () {
-        alert('fasd')
+        var pageName = "solicitarProformas.html";
+        document.location.href = pageName;
     })
 })

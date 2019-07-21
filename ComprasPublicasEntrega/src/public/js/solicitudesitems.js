@@ -1,7 +1,7 @@
-function tab1_To_tab2()
+function btnSeleccionarItem()
 {
-    var table1 = document.getElementById("table1"),
-        table2 = document.getElementById("table2"),
+    var table1 = document.getElementById("tablaSeleccionarItem"),
+        table2 = document.getElementById("tablaSeleccionadosItem"),
         checkboxes = document.getElementsByName("check-tab1");
     console.log("Val1 = " + checkboxes.length);
     for(var i = 0; i < checkboxes.length; i++)
@@ -17,7 +17,7 @@ function tab1_To_tab2()
             cell1.innerHTML = table1.rows[i+1].cells[0].innerHTML;
             cell2.innerHTML = table1.rows[i+1].cells[1].innerHTML;
             cell3.innerHTML = "<input type='checkbox' name='check-tab2'>";
-            cell4.innerHTML = "<input type=\"number\" name=\"quantity\" min=\"1\" max=\"100000\">";
+            cell4.innerHTML = "<input id=\"iptCantidadItem_"+table1.rows[i+1].cells[0].innerHTML+"\" type=\"number\" name=\"quantity\" min=\"1\" max=\"100000\">";
 
             // remove the transfered rows from the first table [table1]
             var index = table1.rows[i+1].rowIndex;
@@ -29,11 +29,10 @@ function tab1_To_tab2()
         }
 }
 
-
-function tab2_To_tab1()
+function btnDeseleccionarItem()
 {
-    var table1 = document.getElementById("table1"),
-        table2 = document.getElementById("table2"),
+    var table1 = document.getElementById("tablaSeleccionarItem"),
+        table2 = document.getElementById("tablaSeleccionadosItem"),
         checkboxes = document.getElementsByName("check-tab2");
     console.log("Val1 = " + checkboxes.length);
     for(var i = 0; i < checkboxes.length; i++)
@@ -60,4 +59,46 @@ function tab2_To_tab1()
             console.log(checkboxes.length);
         }
 }
-            
+
+function siguienteItemSeleccionados() {
+    var arrayAux = []
+    $('#tablaSeleccionadosItem tr').each(function () {
+        var texto = $(this).text();
+        texto = String(texto)
+        var id = texto.split("  ")
+        texto = id[0].trim()
+        texto = parseInt(texto)
+        var aux="#iptCantidadItem_"+texto
+        var cantidad= $(aux).val()//document.getElementById(aux);
+        cantidad=parseInt(cantidad)
+        var jsonAux={idItem:texto,cantidadItem:cantidad}
+        arrayAux.push(jsonAux)
+    });
+    arrayAux.shift();
+    alert(JSON.stringify(arrayAux));
+    //pendiente siguiente paso
+}
+
+function anteriorItemSeleccionados() {
+    alert('fasd')
+}
+
+$(window).on('load', function () {
+    $.ajax({
+        url: '/llenarCatalogoInicio',
+        success: function (items) {
+            let tbody = $('#cuerpoItemsSelect')
+            tbody.html('');
+            items.forEach(item => {
+                tbody.append(`
+                <tr>
+                <td id='itemId'>${item.iditem}</td>
+                <td id='itemDescripcion'>${item.descripcion}</td>
+                <td><input type="checkbox" name="check-tab1"></td>
+                </tr>
+            `)
+            }
+            )
+        }
+    })
+});

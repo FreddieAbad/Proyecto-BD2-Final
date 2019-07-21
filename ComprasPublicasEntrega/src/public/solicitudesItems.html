@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Solicitar proformas</title>
+    <title>Agregar Items a Solicitud</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
@@ -25,7 +25,7 @@
         <div class="container">
             <div class="menu-bar">
                 <ul>
-                    <li><a href="./inicio.html">Inicio</a></li>
+                    <li><a href="#">Inicio</a></li>
                     <li><a href="./principal.html">Solicitudes</a></li>
                     <li><a href="./catalogo.html">Catálogo</a></li>
                     <li><a href="./inventario.html">Inventario</a></li>
@@ -34,60 +34,55 @@
             </div>
         </div>
     </header>
+
+
     <div class="container-fluid">
         <div id="btnsSiguientePaso" class="mt-2">
             <div class="row">
                 <div class="col-2">
-                    <button type="button" class="btn btn-info" id="btnSiguientePasoSoliProf"  onclick="anteriorProveedorSeleccionados();">Anterior</button>
+                    <button type="button" class="btn btn-info" id="btnSiguientePasoSoliProf"
+                        onclick="anteriorItemSeleccionados();">Anterior</button>
                 </div>
                 <div class="col-8"></div>
                 <div class="col-2">
-                    <button type="button" class="btn btn-success" id="btnSiguientePasoSoliProf" onclick="siguienteProveedorSeleccionados();">Siguiente</button>
+                    <button type="button" class="btn btn-success" id="btnSiguientePasoSoliProf"
+                        onclick="siguienteItemSeleccionados();">Siguiente</button>
                 </div>
             </div>
         </div>
-        <div class="row mr-2 ml-2">
-            <div class="col-xs-12 col-md-5 ">
-                <h4>Catálogo de proveedores</h4>
-                <div id="divtablaSoliProveedores">
-                    <table class="table" id="tablaSoliProveedores">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Estado</th>
-                                <th>Seleccionar</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cuerpoProveedores">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-1 tab-btn">
-                <h4>Acción</h4>
-                <button type="button" class="btn btn-warning" onclick="seleccionarProveedores();">Seleccionar
-                    Proveedor/es</button>
-                <button type="button" class="btn btn-danger" onclick="deseleccionarProveedores();">Deseleccionar
-                    Proveedor/es</button>
-            </div>
-            <div class="col-xs-12 col-md-5">
-                <h4>Proveedores seleccionados</h4>
-                <table class="table" id="tablaSeleccionadosProv" >
+        <div class="row">
+            <div class="col-xs-12 col-md-5" id="divtablaSoliItem">
+                <h4>Catálogo de items</h4>
+                <table id="tablaSeleccionarItem" class="table">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Estado</th>
-                            <th>Seleccionar</th>
+                            <th>Descripción</th>
+                            <th>Seleccionasr</th>
                         </tr>
                     </thead>
+                    <tbody id="cuerpoItemsSelect">
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-btn  col-xs-12 col-md-1">
+                <h4>Acción</h4>
+                <button type="button" class="btn btn-warning" onclick="btnSeleccionarItem();">Seleccionar Item</button>
+                <button type="button" class="btn btn-danger" onclick="btnDeseleccionarItem();">
+                    Deseleccionar Item</button>
+            </div>
+            <div class="col-xs-12 col-md-5">
+                <h4>Items en la solicitud</h4>
+                <table id="tablaSeleccionadosItem" class="table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripción</th>
+                        <th>Seleccionar</th>
+                        <th style="text-align:center">Cantidad</th>
+                    </tr>
                 </table>
             </div>
         </div>
-
     </div>
 
 
@@ -95,8 +90,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src='js/jquery.js'></script>
-
-    <script src="js/solicitarProformas.js"></script>
+    <script src="js/solicitudesItems.js"></script>
 
 
 </body>
