@@ -105,6 +105,31 @@ app.get('/llenarCatalogoInicio', (req, res, next) => {
     })
 });
 
+//RUTA LLENAR TABLA CATALOGO
+app.get('/llenarProformasInicio', (req, res, next) => {
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        var sentencia = ' select pf.idproforma,pv.nombre,pf.preciosubtotal,pf.preciototal,pf.descuento,pf.fechaemision  from proformas pf,proveedores pv where pv.idproveedor =pf.idproveedor'
+        //        'SELECT * FROM ITEMS WHERE estado=\'ACTIVO\'order by iditem';
+        console.log('Listado Catalogo: ' + sentencia)
+        client.query(sentencia, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            } else {
+                var proformaInfo = result.rows;
+                res.json(proformaInfo)
+            }
+        })
+    })
+});
+
 //AGREGA NUEVO ITEM, PAGINA catalogo.html
 app.post('/agregarNuevoItem', (req, res, next) => {
     const {
@@ -519,7 +544,7 @@ app.post('/enviarCorreo', (req, res) => {
     const {
         texto
     } = req.body
-    console.log("$$$ "+texto)
+    //console.log("$$$ "+texto)
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -542,9 +567,6 @@ app.post('/enviarCorreo', (req, res) => {
     });
 })
 
-/* function prettyProductos(productos) {
-
-} */
 /**
  * Consigo los emails de los proveedores
  */
@@ -634,6 +656,59 @@ app.get('/getEmailTexto/:pageURL', (req, res, next) => {
             } else {
                 var descripcionItem = result.rows;
                 res.json(descripcionItem)
+            }
+        })
+    })
+});
+
+
+//AGREGA PROFORMA ACEPTADA
+app.post('/insertarProformaAceptada', (req, res, next) => {
+    const {
+        idItem
+    } = req.body
+    const {
+        idProforma
+    } = req.body
+    const {
+        precioTotal
+    } = req.body
+    const {
+        marca
+    } = req.body
+    const {
+        unidades
+    } = req.body
+    const {
+        idSol
+    } = req.body
+    const {
+        idProv
+    } = req.body
+    /*  var idSol=1
+     var idProv=1 */
+    var marca2 = marca.substring(1, marca.length - 1);
+    var datoConsulta = 'SELECT  agregarItemProf(' + idSol + ',' + idItem + ',' + idProv + ',' + idProforma + ',' + unidades + ',' + precioTotal + ',\'' + marca2 + '\')'
+    //(IN _idSolicitud int,IN _idItem int,IN _idProv int,IN _idProf int,IN _unidades int, IN _precio int,
+
+
+    //'insert into items (descripcion) values(\'' + item + '\')';
+    console.log('Ingreso PROFORMA SOLICITUD >> ' + datoConsulta);
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        client.query(datoConsulta, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.json({ estado: 0 });
+            } else {
+                console.log()
+                res.json({ estado: result.rowCount });
             }
         })
     })

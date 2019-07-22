@@ -187,3 +187,8 @@ $(function () {
         document.location.href = pageName;
     })
 })
+
+function cargarProformaBtn() {
+    var pageName = "cargarProforma.html";
+    document.location.href = pageName;
+}

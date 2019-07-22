@@ -1,0 +1,71 @@
+idItem:1,
+idProveedor:1,
+unidades:20,
+precioTotal:23014.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4
+!@#$%
+idItem:2,
+idProveedor:2,
+unidades:20,
+precioTotal:3014.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4
+!@#$%
+idItem:3,
+idProveedor:3,
+unidades:20,
+precioTotal:2314.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4
+!@#$%
+idItem:4,
+idProveedor:4,
+unidades:20,
+precioTotal:234.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4
+!@#$%
+idItem:15,
+idProveedor:5,
+unidades:20,
+precioTotal:2014.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4
+!@#$%
+idItem:16,
+idProveedor:6,
+unidades:20,
+precioTotal:14.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4
+!@#$%
+idItem:17,
+idProveedor:7,
+unidades:20,
+precioTotal:2304.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4
+!@#$%
+idItem:27,
+idProveedor:8,
+unidades:20,
+precioTotal:234.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4
+!@#$%
+idItem:37,
+idProveedor:1,
+unidades:20,
+precioTotal:23014.56,
+marca:'LABCity UK Poland',
+idProf:1,
+idSoli:4

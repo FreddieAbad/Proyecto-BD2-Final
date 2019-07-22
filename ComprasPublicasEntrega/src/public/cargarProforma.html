@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Catálogo de Items</title>
+    <title>Cargar Solicitud Proforma</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -33,12 +33,41 @@
             </div>
         </div>
     </header>
-    
+    <div class="container">
+        <div class="head">
+            <h5>Cargar Proforma</h5>
+            <input type="file" id="cargarArchivo" />
+            <br>
+            <h3>Contenido del archivo:</h3>
+            <br>
+            <pre id="contenido-archivo"></pre>
+            <div id="divtablaProforma">
+                <table class="table  table-bordered table-responsive-md table-striped text-center"
+                    id="tablaProforma">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Proveedor</th>
+                            <th class="text-center"># Proforma</th>
+                            <th class="text-center">Subtotal</th>
+                            <th class="text-center">Descuento</th>
+                            <th class="text-center">Total</th>
+                            <th class="text-center">Fecha emisión</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoProforma">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
     <script src="js/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="js/catalogo.js"></script>
+    <script src="js/cargarProforma.js"></script>
 
 </body>
 
