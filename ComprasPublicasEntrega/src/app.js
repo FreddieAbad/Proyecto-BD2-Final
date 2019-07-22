@@ -24,6 +24,7 @@ app.use(express.json())
 /*  Routes
  */
 const connectionString = 'postgres://postgres:admin@localhost:5432/bd_compraspublicasCUC';
+
 //RUTA VERIFICAR USUARIO LOGIN
 app.post('/verificarUsuario', (req, res, next) => {
     const {
@@ -54,6 +55,7 @@ app.post('/verificarUsuario', (req, res, next) => {
         })
     })
 });
+
 //RUTA LLENAR TABLA SOLICITUDES
 app.get('/llenarSolicitudesInicio', (req, res, next) => {
     var pool = new pg.Pool({
@@ -535,7 +537,6 @@ app.post('/agregarProv', (req, res) => {
     })
 })
 
-
 //Enviar Email
 app.post('/enviarCorreo', (req, res) => {
     const {
@@ -612,7 +613,6 @@ app.get('/getEmailProveedores/:idProveedors', (req, res, next) => {
     })
 });
 
-
 /**
  * Consigue descripciones de items
  */
@@ -661,6 +661,51 @@ app.get('/getEmailTexto/:pageURL', (req, res, next) => {
     })
 });
 
+app.post('/insertarTablaAct', (req, res, next) => {
+    const {
+        id
+    } = req.body
+    const {
+        cant
+    } = req.body
+    //FECHA
+    var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+    var datoConsulta = 'insert into inventarioActualizado (idItem,cantidad,fecha) values( ' + id + ',' + cant + ',\''+utc+'\')';
+    console.log('Ingreso Item >> ' + datoConsulta);
+    var pool = new pg.Pool({
+        connectionString: connectionString,
+    })
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        client.query(datoConsulta, function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.json({ estado: 0 });
+            } else {
+                console.log()
+                res.json({ estado: result.rowCount });
+            }
+        })
+    })
+
+})
+
+/**
+ * CONSUMIR API
+ */
+app.get('/consumirApiExtInventario', (req, res, next) => {
+    const request = require('request');
+    request('http://ucuencadental.azurewebsites.net/inventarios/entrega/productos/all', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body) // Show the HTML for the Google homepage. 
+            console.log(typeof body)
+            res.json(body)
+        }
+    });
+})
 
 //AGREGA PROFORMA ACEPTADA
 app.post('/insertarProformaAceptada', (req, res, next) => {

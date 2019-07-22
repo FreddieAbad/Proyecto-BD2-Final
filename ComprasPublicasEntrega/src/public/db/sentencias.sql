@@ -35,3 +35,9 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--vista inventario
+
+CREATE VIEW itemsActualizado AS
+    select i.iditem,i.cantidad,i.fecha,it.descripcion from inventarioActualizado i, items it where i.iditem=it.iditem
+
+select  * from itemsActualizado
