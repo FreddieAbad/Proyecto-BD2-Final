@@ -12,13 +12,23 @@
 </head>
 
 <body>
-    <div><img src="img/logo.png" class="logo"></div>
+    <div class="usuario">
+        <div class="row">
+            <div class="col-10">
+                <img src="img/logo.png" class="logo" style="width: 20%;float: right;">
+            </div>
+            <div class="col-2 aux-bar">
+                <button class="btn btn-warning mt-2 mr-5" href="./index.html" onclick="cierraSesion();">Cerrar Sesion</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div><img src="img/logo.png" class="logo" style="width: 30%"></div>
     <div class="aux-bar">
         <ul>
             <li><img src="img/campana2.png"></li>
             <li><a href="#"> Cerrar sesión</a></li>
         </ul>
-    </div>
+    </div> -->
     <header>
         <div class="container">
             <div class="menu-bar">
@@ -29,16 +39,75 @@
                     <li><a href="./inventario.html">Inventario</a></li>
                     <li><a href="./proveedor.html">Proveedores</a></li>
                     <li><a href="./proformas.html">Proformas</a></li>
+                    <li><a href="./contactos.html">Contactos</a></li>
+
                 </ul>
             </div>
         </div>
     </header>
-    
+    <div class="container">
+
+        <div class="row">
+            <div class="col-3">
+                <img src="img/logo.png" class="logo" style="width:80%">
+            </div>
+            <div class="col-6">
+                <h1 style="text-align: center">Sistema de Gestión Unificado</h1>
+                <h5 style="text-align: center">Módulo de Compras Públicas</h5>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="row" id="pluginsUDC">
+        <div class="col-6">
+            <div class="cont-descrip container">
+                <div class="texto_caja" style="text-align: center">
+                    <h4>Descripción</h4>
+                </div>
+                <div class="contenedor_caja">
+                    <div class="caja">
+                        <p style="text-align: justify;">
+                            Módulo de Compras Públicas para el proyecto de implementación de un Sistema de Gestión
+                            Unificado
+                            del Consultorio Odontológico de la Universidad de Cuenca.
+                        </p>
+                        <p style="text-align: justify;">
+                            Este módulo fue desarrollado como parte de la materia Base de Datos II, periodo marzo-julio
+                            2019.
+                        </p>
+                        <h5 style="text-align: right;;">
+                            SICOUCu V0.5 (Alfa) 2019
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 pl-2 pr-2">
+            <div class="noticias_facebook">
+                <iframe
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fes-la.facebook.com%2Fucuenca&tabs=timeline&width=340&height=1000&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                    width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowTransparency="true" allow="encrypted-media"></iframe>
+            </div>
+        </div>
+        <div class="col-3 pl-2 pr-2">
+            <div class="noticias_twitter">
+                <a class="twitter-timeline" data-height="500"
+                    href="https://twitter.com/udecuenca?ref_src=twsrc%5Etfw">Tweets by udecuenca</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            </div>
+        </div>
+    </div>
+
     <script src="js/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="js/catalogo.js"></script>
+    <script src="js/general.js"></script>
 
 </body>
 

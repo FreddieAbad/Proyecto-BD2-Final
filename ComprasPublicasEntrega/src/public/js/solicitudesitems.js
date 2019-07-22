@@ -101,15 +101,14 @@ function anteriorItemSeleccionados() {
     arrayAux.forEach((temp) => {
         var cantidad = "#iptCantidadItem_" + temp
         cantidad = $(cantidad).val()
-        alert(temp)
         temporal.push({ idItem: temp, cantidad: cantidad })
     })
-    alert(JSON.stringify(temporal));
+    //alert(JSON.stringify(temporal));
     if (arrayAux.length != 0) {
-        if (confirm("¿Desea olvidar los items seleccionados?", "Borrar")) {
-            alert(JSON.stringify(arrayAux));
+        if (confirm("¿Desea olvidar los items seleccionados?", "Borrar")==false) {
+            //alert(JSON.stringify(arrayAux));
             var pageName = "principal.html?items=" + JSON.stringify(arrayAux);
-            alert(pageName);
+            //alert(pageName);
             document.location.href = pageName;
         } else {
             var pageName = "principal.html";

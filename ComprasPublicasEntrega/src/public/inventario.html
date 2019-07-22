@@ -4,14 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Inventario</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/principal.css">
-
 </head>
 
 
@@ -19,13 +16,23 @@
 
 
 <body>
-    <div><img src="img/logo.png" class="logo"></div>
+    <div class="usuario">
+        <div class="row">
+            <div class="col-10">
+                <img src="img/logo.png" class="logo" style="width: 20%;float: right;">
+            </div>
+            <div class="col-2 aux-bar">
+                <button class="btn btn-warning mt-2 mr-5" href="./index.html" onclick="cierraSesion();">Cerrar Sesion</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div><img src="img/logo.png" class="logo"></div>
     <div class="aux-bar">
         <ul>
             <li><img src="img/campana2.png"></li>
             <li><a href="#"> Cerrar sesión</a></li>
         </ul>
-    </div>
+    </div> -->
     <header>
         <div class="container">
             <div class="menu-bar">
@@ -35,6 +42,9 @@
                     <li><a href="./catalogo.html">Catálogo</a></li>
                     <li class="active"><a href="#">Inventario</a></li>
                     <li><a href="./proveedor.html">Proveedores</a></li>
+                    <li><a href="./proformas.html">Proformas</a></li>
+                    <li><a href="./contactos.html">Contactos</a></li>
+
                 </ul>
             </div>
 
@@ -87,6 +97,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="js/general.js"></script>
+
 </body>
 
 </html>

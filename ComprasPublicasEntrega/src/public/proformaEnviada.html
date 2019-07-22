@@ -12,32 +12,48 @@
 </head>
 
 <body>
-    <div><img src="img/logo.png" class="logo"></div>
+    <div class="usuario">
+        <div class="row">
+            <div class="col-10">
+                <img src="img/logo.png" class="logo" style="width: 20%;float: right;">
+            </div>
+            <div class="col-2 aux-bar">
+                <button class="btn btn-warning mt-2 mr-5" href="./index.html" onclick="cierraSesion();">Cerrar Sesion</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div><img src="img/logo.png" class="logo"></div>
     <div class="aux-bar">
         <ul>
             <li><img src="img/campana2.png"></li>
             <li><a href="#"> Cerrar sesión</a></li>
         </ul>
-    </div>
+    </div> -->
     <header>
         <div class="container">
             <div class="menu-bar">
                 <ul>
-                    <li ><a href="./inicio.html">Inicio</a></li>
+                    <li><a href="./inicio.html">Inicio</a></li>
                     <li><a href="./principal.html">Solicitudes</a></li>
                     <li><a href="./catalogo.html">Catálogo</a></li>
                     <li><a href="./inventario.html">Inventario</a></li>
                     <li><a href="./proveedor.html">Proveedores</a></li>
+                    <li><a href="./proformas.html">Proformas</a></li>
                     <li class="active"><a href="./proformaEnviada.html">Envio Proforma</a></li>
+                    <li><a href="./contactos.html">Contactos</a></li>
+
                 </ul>
             </div>
         </div>
     </header>
     <div class="container">
         <div id="divProveedores">
-            <h4>Proforma Enviada</h4>
+            <br>
+            <br>
+            <h4 style="text-align: center">Proforma Enviada</h4>
+            <br>
+            <br>
             <div id="listaProv">
-
             </div>
         </div>
         <div id="divTablaItemEnviado">
@@ -62,6 +78,7 @@ AGREGAR CONTENIDO DE DOC
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="js/catalogo.js"></script>
+    <script src="js/general.js"></script>
 
 </body>
 

@@ -12,34 +12,40 @@
     <link rel="stylesheet" type="text/css" href="css/principal.css">
     <link rel="stylesheet" type="text/css" href="css/solicitudes-items.css">
 </head>
-
 <body>
-    <div><img src="img/logo.png" class="logo"></div>
-    <div class="aux-bar">
-        <ul>
-            <li><img src="img/campana2.png"></li>
-            <li><a href="#">Cerrar sesión</a></li>
-        </ul>
+    <div class="usuario">
+        <div class="row">
+            <div class="col-10">
+                <img src="img/logo.png" class="logo" style="width: 20%;float: right;">
+            </div>
+            <div class="col-2 aux-bar">
+                <button class="btn btn-warning mt-2 mr-5" href="./index.html" onclick="cierraSesion();">Cerrar Sesion</button>
+            </div>
+        </div>
     </div>
     <header>
         <div class="container">
             <div class="menu-bar">
                 <ul>
-                    <li><a href="#">Inicio</a></li>
+                    <li><a href="./inicio.html">Inicio</a></li>
                     <li><a href="./principal.html">Solicitudes</a></li>
                     <li><a href="./catalogo.html">Catálogo</a></li>
                     <li><a href="./inventario.html">Inventario</a></li>
-                    <li><a href="#">Proveedores</a></li>
+                    <li><a href="./proveedor.html">Proveedores</a></li>
+                    <li><a href="./proformas.html">Proformas</a></li>
+                    <li><a href="./contactos.html">Contactos</a></li>
+
                 </ul>
             </div>
         </div>
     </header>
-
-
     <div class="container-fluid">
+        <div class="container mt-3 mb3">
+            <h3 style="text-align: center">Selecciona los Items de la Solicitud</h3>
+        </div>
         <div id="btnsSiguientePaso" class="mt-2">
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 pl-5">
                     <button type="button" class="btn btn-info" id="btnSiguientePasoSoliProf"
                         onclick="anteriorItemSeleccionados();">Anterior</button>
                 </div>
@@ -51,8 +57,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-md-5" id="divtablaSoliItem">
-                <h4>Catálogo de items</h4>
+            <div class="col-xs-12 col-md-5 pl-4" id="divtablaSoliItem">
+                <h4 style="text-align:center">Catálogo de Items</h4>
                 <table id="tablaSeleccionarItem" class="table">
                     <thead>
                         <tr>
@@ -65,14 +71,15 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-btn  col-xs-12 col-md-1">
-                <h4>Acción</h4>
-                <button type="button" class="btn btn-warning" onclick="btnSeleccionarItem();">Seleccionar Item</button>
+            <div class="tab-btn  col-xs-12 col-md-1" style="text-align:center">
+                <h4 style="text-align:center">Acción</h4>
+                <button type="button" class="btn btn-warning" onclick="btnSeleccionarItem();"
+                    style="width:150%">Seleccionar Item</button>
                 <button type="button" class="btn btn-danger" onclick="btnDeseleccionarItem();">
                     Deseleccionar Item</button>
             </div>
-            <div class="col-xs-12 col-md-5">
-                <h4>Items en la solicitud</h4>
+            <div class="col-xs-12 col-md-5 ">
+                <h4 style="text-align:center">Items en la Solicitud</h4>
                 <table id="tablaSeleccionadosItem" class="table">
                     <tr>
                         <th>Id</th>
@@ -84,15 +91,12 @@
             </div>
         </div>
     </div>
-
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src='js/jquery.js'></script>
     <script src="js/solicitudesItems.js"></script>
-
-
+    <script src="js/general.js"></script>
 </body>
 
 </html>

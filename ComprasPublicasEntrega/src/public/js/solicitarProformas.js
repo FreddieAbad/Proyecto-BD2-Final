@@ -105,7 +105,7 @@ function siguienteProveedorSeleccionados() {
         var pageURL = $(location).attr("href");
         pageURL = String(pageURL).split("=")
         pageURL = String(pageURL[1])
-        alert('id 222de items' + pageURL);
+        //alert('id 222de items' + pageURL);
         //send email
         $.ajax({
             url: '/getEmailProveedores/' + JSON.stringify(arrayAux),
@@ -117,7 +117,7 @@ function siguienteProveedorSeleccionados() {
                 getDataEmail(email, pageURL)
                 ///enviado email
                 var pageName = "proformaEnviada.html";
-                alert(pageName)
+                //alert(pageName)
                 document.location.href = pageName;
             },
             error: function () {
@@ -198,7 +198,7 @@ function getDataEmail(email, pageURL) {
         success: function (response) {
             var itemsC = strEmailItemsCantidad(response, pageURL)
             sendEmail(email, itemsC);
-            alert("Items >>" + itemsC)
+            //alert("Items >>" + itemsC)
             return itemsC;
         },
         error: function () {
@@ -231,7 +231,7 @@ function strEmailItemsCantidad(items, pageURL) {
         strqueryIds = strqueryIds.concat(aux)
     });
     console.log(strqueryIds)
-    alert("Cuerpo " + strqueryIds)
+    //alert("Cuerpo " + strqueryIds)
     return strqueryIds
 }
 
@@ -246,7 +246,7 @@ function sendEmail(emails, itemsC) {
         success: function (response) {
             console.log(response.estado)
             if (response.estado != 0) {
-                alert('EXITO');
+                //alert('EXITO');
                 /*     var pageName = "proveedor.html";
                     document.location.href = pageName; */
             } else {

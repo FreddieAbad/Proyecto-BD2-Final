@@ -15,7 +15,17 @@
 </head>
 
 <body>
-    <div class="row">
+    <div class="usuario">
+        <div class="row">
+            <div class="col-10">
+                <img src="img/logo.png" class="logo" style="width: 20%;float: right;">
+            </div>
+            <div class="col-2 aux-bar">
+                <button class="btn btn-warning mt-2 mr-5" href="./index.html" onclick="cierraSesion();">Cerrar Sesion</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
         <div class="col-8">
             <img src="img/logo.png" class="logo" style="width: 30%">
         </div>
@@ -25,8 +35,8 @@
                 <li><a href="#"> Cerrar sesión</a></li>
             </ul>
         </div>
-    </div>
-    
+    </div> -->
+
     <header>
         <div class="container">
             <div class="menu-bar">
@@ -36,26 +46,36 @@
                     <li><a href="./catalogo.html">Catálogo</a></li>
                     <li><a href="./inventario.html">Inventario</a></li>
                     <li><a href="./proveedor.html">Proveedores</a></li>
+                    <li><a href="./proformas.html">Proformas</a></li>
+                    <li><a href="./contactos.html">Contactos</a></li>
+
                 </ul>
             </div>
-
         </div>
     </header>
-
     <div class="container-fluid">
         <section class="main row">
             <aside class="col-xs-12 col-md-2">
                 <div class="action-container" id="divAccionesSolicitud">
                     <ul>
                         <li><a href="#" id='btnCrearSolicitud'>Crear Proforma</a></li>
-                        <li><a href="#" id='btnCargarProformaAceptada' onclick="cargarProformaBtn();">Cargar Proforma Solicitud</a></li>
-                        <li><a href="#">Buscar</a></li>
-                        <li><a href="#">Eliminar</a></li>
+                        <li><a href="#" id='btnCargarProformaAceptada' onclick="cargarProformaBtn();">Cargar Proforma
+                                Solicitud</a></li>
                     </ul>
                 </div>
             </aside>
             <div class="col-xs-12 col-md-10 ">
                 <br>
+                <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="myInput2" onkeyup="filtrarResultado()"
+                                    placeholder="Buscar por Encargado..." title="Ingresa descripcion a filtrar">
+                            </div>
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
                 <div id="infoSoli">
                 </div>
                 <div id="divTablaSolicitudes">
@@ -80,12 +100,33 @@
             </div>
         </section>
     </div>
-
+    <script>
+        function filtrarResultado() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput2");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("tablaSolicitudes");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <script src="js/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="js/solicitudes.js"></script>
+    <script src="js/general.js"></script>
+
 </body>
 
 </html>
