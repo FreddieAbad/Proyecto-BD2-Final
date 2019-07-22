@@ -105,7 +105,7 @@ function siguienteProveedorSeleccionados() {
         var pageURL = $(location).attr("href");
         pageURL = String(pageURL).split("=")
         pageURL = String(pageURL[1])
-        //alert('id 222de items'+pageURL);
+        alert('id 222de items' + pageURL);
         //send email
         $.ajax({
             url: '/getEmailProveedores/' + JSON.stringify(arrayAux),
@@ -113,35 +113,20 @@ function siguienteProveedorSeleccionados() {
             success: function (response) {
                 console.log(response)
                 var email = strEmailProv(response)
-                //alert('enviarCorreo Exitosamente'+email);
-                sendEmail(email);
-                //REVISION IMPORTANTE
-                 /* TODO TO DO ERROR IMPORTANTE */
-                $.ajax({
-                    url: '/getEmailTexto/' + pageURL,
-                    method: 'get',
-                    success: function (response) {
-                        console.log(response)
-                        alert("k1    " + pageURL)
-                        //var itemsC = strEmailItemsCantidad(response, pageURL)
-                        alert('enviarITEMS Exitosamente' + itemsC);
-                        sendEmail(email); //itemsC
-                    },
-                    error: function () {
-                        alert('Ha surgido un error, por favor vuelve a intentar.')
-                    }
-                });
+                //Consigue Datos Email y los envia a los emails de la variable email del paso anterior 
+                getDataEmail(email, pageURL)
+                ///enviado email
+                var pageName = "proformaEnviada.html";
+                alert(pageName)
+                document.location.href = pageName;
             },
             error: function () {
                 alert('Ha surgido un error, por favor vuelve a intentar.')
             }
         });
-        ///enviado email
-        var pageName = "proformaEnviada.html?prov=" + JSON.stringify(arrayAux) + "?items=" + pageURL;
-        alert(pageName)
-        document.location.href = pageName;
     }
 }
+
 function anteriorProveedorSeleccionados() {
     var arrayAux = []
     //Recupero Id items
@@ -177,8 +162,6 @@ function anteriorProveedorSeleccionados() {
     }
 }
 
-
-
 //Hago str de emails para enviar a correo por nodemailer
 function strEmailProv(emails) {
     var emailstr = ""
@@ -195,29 +178,6 @@ function strEmailProv(emails) {
     return emailstr
 }
 
-//Hago str de emails para enviar a correo por nodemailer
-/* todo */
-/* function strEmailItemsCantidad(items, pageURL) {
-    ///
-    var nuevoJson = JSON.parse(pageURL)
-    //Ordeno JSON 
-    nuevoJson.sort(ordenarJsonXProp2("idItem"));
-    //CONCATENO PARA QUERY
-    var queryIds = "\nID\tDESCRIPCION\tCANTIDAD\n"
-    var contador = 0
-    nuevoJson.forEach((itms) => {
-        console.log(itms.idItem + '>' + itms.cantidadItem)
-        var aux = "" + itms.idItem + "\t" + items.descripcion + "\t" + itms.cantidadItem + "\n";
-        queryIds = queryIds.concat(aux)
-        contador = contador + 1
-    })
-    //var queryIds2 = queryIds.substring(1, queryIds.length - 2);
-    alert(queryIds2)
-
-    ///
-
-    return queryIds2
-} */
 function ordenarJsonXProp2(property) {
     return function (a, b) {
         if (a[property] > b[property])
@@ -227,6 +187,52 @@ function ordenarJsonXProp2(property) {
 
         return 0;
     }
+}
+
+/**
+ * Peticion informacion descricpion
+ */
+function getDataEmail(email, pageURL) {
+    $.ajax({
+        url: '/getEmailTexto/' + pageURL,
+        success: function (response) {
+            var itemsC = strEmailItemsCantidad(response, pageURL)
+            sendEmail(email, itemsC);
+            alert("Items >>" + itemsC)
+            return itemsC;
+        },
+        error: function () {
+            alert('Ha surgido un error, por favor vuelve a intentar.')
+            return 'error'
+        }
+    });
+}
+
+//Hago str de items solicitados para enviar a correo por nodemailer
+function strEmailItemsCantidad(items, pageURL) {
+    var strqueryIds = "\nID   CANTIDAD\n"
+    var jsonCompleto = []
+    var nuevoJson = pageURL.split("}")//JSON.parse(pageURL)
+    nuevoJson.splice(-1, 1)
+    nuevoJson.forEach((itms) => {
+        var auxiliarJson = itms.split(":")
+        var idItem = auxiliarJson[1]
+        idItem = idItem.split(",")
+        idItem = idItem[0]
+        var cantItm = auxiliarJson[2]
+        jsonCompleto.push({ id: idItem, cantidadItem: cantItm })
+        var aux = "||" + idItem + " || " + cantItm + " ||\n";
+        strqueryIds = strqueryIds.concat(aux)
+        console.log(idItem + "<<" + cantItm)
+    })
+    strqueryIds = strqueryIds.concat("\n\nDESCRIPCIONES\n\n")
+    nuevoJson.forEach(function (item, index) {
+        var aux = "||" + items[index].descripcion + " ||\n";
+        strqueryIds = strqueryIds.concat(aux)
+    });
+    console.log(strqueryIds)
+    alert("Cuerpo " + strqueryIds)
+    return strqueryIds
 }
 
 function sendEmail(emails, itemsC) {

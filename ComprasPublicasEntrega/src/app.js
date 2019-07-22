@@ -519,6 +519,7 @@ app.post('/enviarCorreo', (req, res) => {
     const {
         texto
     } = req.body
+    console.log("$$$ "+texto)
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -530,7 +531,7 @@ app.post('/enviarCorreo', (req, res) => {
         from: 'freddy.abadl@ucuenca.edu.ec',
         to: emails,
         subject: 'Peticion de Proformas - Consultorio Odontologico Universidad de Cuenca',
-        text: 'Informacion Importante'
+        text: texto
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -590,7 +591,9 @@ app.get('/getEmailProveedores/:idProveedors', (req, res, next) => {
 });
 
 
-
+/**
+ * Consigue descripciones de items
+ */
 app.get('/getEmailTexto/:pageURL', (req, res, next) => {
     const {
         pageURL
