@@ -549,12 +549,12 @@ app.post('/enviarCorreo', (req, res) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'freddy.abadl@ucuenca.edu.ec',
-            pass: 'pi3.141591294'
+            user: 'anatusanag@gmail.com',
+            pass: 'Nodemailer12345'
         }
     });
     var mailOptions = {
-        from: 'freddy.abadl@ucuenca.edu.ec',
+        from: 'anatusanag@gmail.com',
         to: emails,
         subject: 'Peticion de Proformas - Consultorio Odontologico Universidad de Cuenca',
         text: texto
@@ -660,7 +660,6 @@ app.get('/getEmailTexto/:pageURL', (req, res, next) => {
         })
     })
 });
-
 app.post('/insertarTablaAct', (req, res, next) => {
     const {
         id
