@@ -10,6 +10,8 @@ The Requirements Specification, Conceptual Modeling and Implementation took abou
 HTML5, CSS3, Bootstrap, NodeJs, ExpressJs, JQuery, Ajax, PostgreSQL.
 
 
+
+
 ### Versión en español:
 ## Módulo de Compras Públicas
 
